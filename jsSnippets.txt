@@ -1,0 +1,112 @@
+import "./styles.css";
+
+
+//Print numbers from 1 to 10 with delay of 1 second between each value being printed
+
+// for (let i = 1; i <= 10; i++) {
+//   setTimeout(() => {
+//     console.log(i);
+//   }, 1000 * i);
+// }
+
+
+
+
+
+//using var print form 10->1 at 1 sec interval:
+
+// for (var i = 10; i >= 1; i--) {
+//   let timer = (function (val) {
+//     setTimeout(() => {
+//       console.log(val);
+//     }, 1000 * (11 - val));
+//   })(i);
+// }
+
+
+
+
+//Print numbers from 1 to 10 with delay of 1 second between each value being printed using setInterval
+
+// let count = 1;
+
+// let interval = setInterval(() => {
+//   console.log(count++);
+//   if (count > 10) clearInterval(interval);
+// }, 1000);
+
+//! code for timer-stopwatch
+
+// let count = document.getElementById("count");
+// let start = document.getElementById("start");
+// let stop = document.getElementById("stop");
+
+// let counter = 0;
+// let interval;
+
+// function startTimer() {
+//   interval = setInterval(() => {
+//     console.log(count);
+//     count.innerHTML = counter++;
+//   }, 1000);
+// }
+// function stopTimer() {
+//   clearInterval(interval);
+// }
+// start.addEventListener("click", () => {
+//   startTimer();
+// });
+
+// stop.addEventListener("click", () => {
+//   stopTimer();
+// });
+
+
+
+
+// how to define and write a promise
+
+// let promise1 = new Promise((res, rej) => {
+//   try {
+//     let data = "data from API";
+//     console.log("API call made");
+//     setTimeout(() => {
+//       res(data);
+//     }, 2000);
+//   } catch (err) {
+//     rej(new Error(err));
+//   }
+// });
+
+// promise1.then((res) => console.log(res));
+
+
+
+// todo list implementation
+
+const form = document.getElementById("form");
+
+const task = document.getElementById("task");
+
+const todos = document.getElementById("todos");
+
+let index = 0;
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  displayTodos(task.value);
+  task.value = "";
+});
+
+//event delegation in Action!
+todos.addEventListener("click", (e) => {
+  let selectedTodoList = document.getElementsByClassName(e.target.className);
+  selectedTodoList[0].remove();
+});
+
+const displayTodos = (item) => {
+  let todo = document.createElement("p");
+  todo.classList.add(index++);
+  todo.innerText = `${item}`;
+  todos.appendChild(todo);
+};

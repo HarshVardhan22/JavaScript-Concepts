@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <div id="error"></div>
+
+    <form id="form" action="/" GET>
+      <div>
+        <label for="name">
+          Name
+        </label>
+        <input type="text" name="name" id="name" />
+      </div>
+      <div>
+        <label for="password">
+          Password
+        </label>
+        <input type="password" name="password" required id="password" />
+      </div>
+      <div>
+        <label for="password2">
+          Re-enter Password
+        </label>
+        <input type="password" name="password2" required id="password2" />
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <script src="src/index.js"></script>
+  </body>
+</html>
+
+
+********************** /JAVASCRIPT/************
+
+const form = document.getElementById("form");
+const name = document.getElementById("name");
+const password = document.getElementById("password");
+const password2 = document.getElementById("password2");
+const error = document.getElementById("error");
+
+form.addEventListener("submit", (e) => {
+  let errorMessages = [];
+  if (name.value === "" || name.value == null)
+    errorMessages.push("name is required");
+  if (password.value !== password2.value)
+    errorMessages.push("passwords dont match");
+  if (!hasUppercase(password.value))
+    errorMessages.push("passwords need to have upperCase");
+
+  if (errorMessages.length > 0) {
+    e.preventDefault();
+    error.innerHTML = errorMessages.join(", ");
+  } else {
+    console.log("Submitted");
+  }
+});
+
+function hasUppercase(inputStr) {
+  let flag = false;
+  for (let i = 0; i < inputStr.length; i++) {
+    let character = inputStr.charAt(i);
+    if (isNaN(character) && character === character.toUpperCase()) flag = true;
+  }
+
+  return flag;
+}
